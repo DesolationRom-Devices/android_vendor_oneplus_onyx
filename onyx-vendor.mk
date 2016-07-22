@@ -1,4 +1,5 @@
 # Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2016-2017 The halogenOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -278,4 +279,18 @@ PRODUCT_PACKAGES += \
     ConnectivityExt \
     dpmapi \
     qcnvitems \
-    qcrilhook
+    qcrilhook \
+    libqmiservices
+
+# OxygenOS 3 Camera
+PRODUCT_PACKAGES += \
+    libfilter-sdk \
+    libopbaselib \
+    libopcameralib \
+    libopcamera \
+    lib-imscamera \
+    libimscamera_jni \
+    libimsmedia_jni \
+    secure_camera_sample_client \
+    OnePlusCamera \
+    OnePlusCameraService

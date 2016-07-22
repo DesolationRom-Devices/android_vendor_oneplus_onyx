@@ -1,4 +1,5 @@
 # Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2016-2017 The halogenOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,6 +18,9 @@
 LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),onyx)
+
+# Call the OnePlus Camera makefile (We want merges to be easy AF)
+include vendor/oneplus/onyx/OxygenOSCamera.mk
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libloc_api_v02
