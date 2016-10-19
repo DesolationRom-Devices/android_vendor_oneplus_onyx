@@ -60,7 +60,6 @@ $(LOCAL_OnePlusCamera_OUT_FILE):
 	done
 
 $(LOCAL_MODULE): | $(LOCAL_OnePlusCamera_OUT_FILE)
-$(LOCAL_SRC_FILES): | $(LOCAL_MODULE)
 .PHONY: $(LOCAL_OnePlusCamera_OUT_FILE)
 
 ### VENDOR
