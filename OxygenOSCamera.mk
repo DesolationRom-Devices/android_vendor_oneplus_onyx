@@ -33,34 +33,35 @@ LOCAL_MODULE_PATH := system/lib
 LOCAL_SRC_FILES := proprietary/lib/libopbaselib.so
 include $(BUILD_PREBUILT)
 
-# libopcameralib.so
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := libopcameralib
-LOCAL_SRC_FILES := proprietary/lib/libopcameralib.so
-include $(PREBUILT_SHARED_LIBRARY)
-
-# libopcamera.so
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := libopcamera
-LOCAL_SRC_FILES := proprietary/lib/libopcamera.so
-include $(PREBUILT_SHARED_LIBRARY)
-
-
 ### PRIV-APP
 
 # OnePlusCamera.apk
 include $(CLEAR_VARS)
-LOCAL_MODULE_TAGS := optional
+
 LOCAL_MODULE := OnePlusCamera
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_SRC_FILES := proprietary/priv-app/OnePlusCamera/OnePlusCamera.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_PRIVILEGED_MODULE := true
+LOCAL_OnePlusCamera_PROPR_DIR := $(LOCAL_PATH)/proprietary
+LOCAL_OnePlusCamera_SRC_FILES := \
+	$(LOCAL_OnePlusCamera_PROPR_DIR)/priv-app/OnePlusCamera/OnePlusCamera.apk
+LOCAL_OnePlusCamera_OUT_FILE := $(OUT)/system/priv-app/OnePlusCamera/OnePlusCamera.apk
+LOCAL_MODULE_TAGS := optional
 LOCAL_OVERRIDES_PACKAGES := Snap Camera Camera2 SnapdragonCamera
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-include $(BUILD_PREBUILT)
+PRODUCT_PACKAGES := $(filter-out $(LOCAL_OVERRIDES_PACKAGES),$(PRODUCT_PACKAGES))
+LOCAL_OnePlusCamera_LIB_DEPENDENCIES := \
+	libopcamera.so \
+	libopcameralib.so
+
+$(LOCAL_OnePlusCamera_OUT_FILE):
+	mkdir -p $(OUT)/system/priv-app/OnePlusCamera/lib/arm
+	cp $(LOCAL_OnePlusCamera_SRC_FILES) \
+		$(LOCAL_OnePlusCamera_OUT_FILE)
+	for lib in $(LOCAL_OnePlusCamera_LIB_DEPENDENCIES); do \
+  	  [ -f $(LOCAL_OnePlusCamera_PROPR_DIR)/lib/$$lib ] && \
+		cp $(LOCAL_OnePlusCamera_PROPR_DIR)/lib/$$lib $(OUT)/system/priv-app/OnePlusCamera/lib/arm/$$lib; \
+	done
+
+$(LOCAL_MODULE): | $(LOCAL_OnePlusCamera_OUT_FILE)
+$(LOCAL_SRC_FILES): | $(LOCAL_MODULE)
+.PHONY: $(LOCAL_OnePlusCamera_OUT_FILE)
 
 ### VENDOR
 
