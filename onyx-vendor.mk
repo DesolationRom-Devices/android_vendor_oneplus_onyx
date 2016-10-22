@@ -285,7 +285,6 @@ PRODUCT_PACKAGES += \
 # OxygenOS 3 Camera
 PRODUCT_PACKAGES += \
     libfilter-sdk \
-    libopbaselib \
     lib-imscamera \
     libimscamera_jni \
     libimsmedia_jni \

@@ -22,17 +22,6 @@ LOCAL_MODULE_PATH := system/lib
 LOCAL_SRC_FILES := proprietary/lib/libfilter-sdk.so
 include $(BUILD_PREBUILT)
 
-# libopbaselib.so
-include $(CLEAR_VARS)
-LOCAL_MODULE := libopbaselib
-LOCAL_MODULE_SUFFIX :=.so
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_TAGS := optional
-LOCAL_PRELINK_MODULE := false
-LOCAL_MODULE_PATH := system/lib
-LOCAL_SRC_FILES := proprietary/lib/libopbaselib.so
-include $(BUILD_PREBUILT)
-
 ### PRIV-APP
 
 include $(CLEAR_VARS)
@@ -60,7 +49,8 @@ LOCAL_OnePlusCamera_PROPR_DIR := $(LOCAL_PATH)/proprietary
 LOCAL_MODULE_TAGS := optional
 LOCAL_OnePlusCamera_LIB_DEPENDENCIES := \
 	libopcamera.so \
-	libopcameralib.so
+	libopcameralib.so \
+	libopbaselib.so
 
 OnePlusCameraRule:
 	mkdir -p $(OUT)/system/priv-app/OnePlusCamera/lib/arm
