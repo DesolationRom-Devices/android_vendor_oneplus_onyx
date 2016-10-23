@@ -61,7 +61,7 @@ OnePlusCameraRule:
 	done
 
 $(LOCAL_MODULE): OnePlusCameraRule
-OnePlusCameraBundle: | OnePlusCamera OnePlusCameraLibs
+OnePlusCameraBundle: OnePlusCamera OnePlusCameraLibs
 all: $(LOCAL_MODULE)
 .PHONY: $(LOCAL_MODULE)
 
