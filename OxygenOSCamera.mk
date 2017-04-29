@@ -6,7 +6,7 @@
 # Find where we are
 LOCAL_PATH := $(call my-dir)
 
-# Check if the device is oneplus2
+# Check if the device is onyx
 ifeq ($(TARGET_DEVICE),onyx)
 
 ### LIB
@@ -29,16 +29,15 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := OnePlusCamera
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := proprietary/priv-app/OnePlusCamera/OnePlusCamera.apk
-LOCAL_OVERRIDES_PACKAGES := Snap Camera Camera2
+LOCAL_OVERRIDES_PACKAGES := Snap SnapdragonCamera Camera Camera2
 LOCAL_MODULE_CLASS := APPS
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_CERTIFICATE := PLATFORM
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_SDK_VERSION := 23
 TARGET_PLATFORM := android-23
 APP_PLATFORM := android-23
 LOCAL_ADDITIONAL_DEPENDENCIES := OnePlusCameraLibs
-
 include $(BUILD_PREBUILT)
 
 # OnePlusCamera libs
@@ -55,9 +54,9 @@ LOCAL_OnePlusCamera_LIB_DEPENDENCIES := \
 OnePlusCameraRule:
 	mkdir -p $(OUT)/system/priv-app/OnePlusCamera/lib/arm
 	for lib in $(LOCAL_OnePlusCamera_LIB_DEPENDENCIES); do \
-  	  [ -f $(LOCAL_OnePlusCamera_PROPR_DIR)/lib/$$lib ] && \
-		cp $(LOCAL_OnePlusCamera_PROPR_DIR)/lib/$$lib $(OUT)/system/priv-app/OnePlusCamera/lib/arm/$$lib; \
-		echo "Install: $(OUT)/system/priv-app/OnePlusCamera/lib/arm/$$lib"; \
+	  [ -f $(LOCAL_OnePlusCamera_PROPR_DIR)/lib/$$lib ] && \
+	    cp $(LOCAL_OnePlusCamera_PROPR_DIR)/lib/$$lib $(OUT)/system/priv-app/OnePlusCamera/lib/arm/$$lib; \
+	    echo "Install: $(OUT)/system/priv-app/OnePlusCamera/lib/arm/$$lib"; \
 	done
 
 $(LOCAL_MODULE): OnePlusCameraRule
