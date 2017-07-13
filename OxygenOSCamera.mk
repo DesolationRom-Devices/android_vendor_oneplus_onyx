@@ -29,7 +29,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := OnePlusCamera
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := proprietary/priv-app/OnePlusCamera/OnePlusCamera.apk
-LOCAL_OVERRIDES_PACKAGES := Snap SnapdragonCamera Camera Camera2
+LOCAL_OVERRIDES_PACKAGES := OpenCamera Snap SnapdragonCamera Camera Camera2
 LOCAL_MODULE_CLASS := APPS
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_CERTIFICATE := platform
